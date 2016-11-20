@@ -43,7 +43,7 @@ int getRollingCode() {
     {
         getline(rc, line);
         cout << line << endl;
-        rcode = atoi(line);
+        rcode = stoi(line);
         rc.close();
     } else {
         log("Unable to open file");

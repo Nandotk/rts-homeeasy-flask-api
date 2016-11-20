@@ -20,7 +20,7 @@ using namespace std;
 int main(int argc, char **argv) {
 
     static CCodecSomfyRTS codecSomfyRTS;
-    int rc = 0021;
+    int rc = 21;
     int8_t cmd;
     char inChar = argv[1][0];
 
@@ -44,8 +44,7 @@ int main(int argc, char **argv) {
         case 'm':
             cmd = 0x02;
             codecSomfyRTS.transmit(cmd, rc, 2);
-            int pmax = 2;
-            for (int p = 0; p < pmax; ++p) {
+            for (int p = 0; p < 2; ++p) {
                 codecSomfyRTS.transmit(cmd, rc, 7);
             }
 
@@ -56,8 +55,7 @@ int main(int argc, char **argv) {
         case 'd':
             cmd = 0x04;
             codecSomfyRTS.transmit(cmd, rc, 2);
-            int pmax = 2;
-            for (int p = 0; p < pmax; ++p) {
+            for (int p = 0; p < 2; ++p) {
                 codecSomfyRTS.transmit(cmd, rc, 7);
             }
 
@@ -68,8 +66,7 @@ int main(int argc, char **argv) {
         case 's':
             cmd = 0x01;
             codecSomfyRTS.transmit(cmd, rc, 2);
-            int pmax = 2;
-            for (int p = 0; p < pmax; ++p) {
+            for (int p = 0; p < 2; ++p) {
                 codecSomfyRTS.transmit(cmd, rc, 7);
             }
 
@@ -80,8 +77,7 @@ int main(int argc, char **argv) {
         case 'p':
             cmd = 0x08;
             codecSomfyRTS.transmit(cmd, rc, 2);
-            int pmax = 20;
-            for (int p = 0; p < pmax; ++p) {
+            for (int p = 0; p < 20; ++p) {
                 codecSomfyRTS.transmit(cmd, rc, 7);
             }
 
@@ -92,8 +88,7 @@ int main(int argc, char **argv) {
         case 'q':
             cmd = 0x08;
             codecSomfyRTS.transmit(cmd, rc, 2);
-            int pmax = 2;
-            for (int p = 0; p < pmax; ++p) {
+            for (int p = 0; p < 2; ++p) {
                 codecSomfyRTS.transmit(cmd, rc, 7);
             }
 
