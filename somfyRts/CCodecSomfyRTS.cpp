@@ -43,7 +43,7 @@ int getRollingCode() {
     {
         getline(rc, line);
         cout << line << endl;
-        rcode = stoi(line);
+        rcode = std::stoi(line);
         rc.close();
     } else {
         log("Unable to open file");
@@ -53,7 +53,7 @@ int getRollingCode() {
 }
 
 void storeRollingCode(int rcode) {
-    string line = to_string(rcode);
+    string line = std::to_string(rcode);
     ofstream rc ("rc.txt");
     if (rc.is_open())
     {
