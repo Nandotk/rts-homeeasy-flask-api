@@ -20,8 +20,7 @@ using namespace std;
 int main(int argc, char **argv) {
 
     static CCodecSomfyRTS codecSomfyRTS;
-    unsigned long rc = 0021;
-    int inByte = 0;
+    int rc = 0021;
     int8_t cmd;
     char inChar = argv[1][0];
 
@@ -29,6 +28,8 @@ int main(int argc, char **argv) {
         perror("setuid");
         return 1;
     }
+
+    rc = getRollingCode();
 
     scheduler_realtime();
     log("Processing");
@@ -100,6 +101,8 @@ int main(int argc, char **argv) {
             rc++;
             break;
     }
+
+    storeRollingCode(rc);
 
     log("fin du programme");
     scheduler_standard();

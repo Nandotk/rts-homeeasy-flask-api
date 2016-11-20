@@ -16,7 +16,7 @@
 # include <cstdint>
 # include <wiringPi.h>
 # include <iostream>
-//# include <stdio.h>
+# include <stdio.h>
 # include <sys/time.h>
 # include <time.h>
 # include <stdlib.h>

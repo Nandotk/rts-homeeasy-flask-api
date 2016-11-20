@@ -12,6 +12,8 @@
 
 #include "somfyRTS.h"
 
+using namespace std;
+
 void log(const char *a) {
     /** @foo logs */
     cout << a << endl;
@@ -33,36 +35,42 @@ void scheduler_standard() {
     }
 }
 
-int getRollingCode () {
-    int rcode;
-    char *line;
+int getRollingCode() {
+    int rcode = 0;
+    string line;
     ifstream rc ("rc.txt");
     if (rc.is_open())
     {
-        while ( getline (rc, line) )
-        {
-            rcode = atoi(line);
-        }
+        getline(rc, line);
+        cout << line << endl;
+        rcode = atoi(line);
+        rc.close();
+    } else {
+        log("Unable to open file");
+    }
+
+    return (rcode);
+}
+
+void storeRollingCode(int rcode) {
+    string line = to_string(rcode);
+    ofstream rc ("rc.txt");
+    if (rc.is_open())
+    {
+        rc << line;
         rc.close();
     } else {
         log("Unable to open file");
     }
 }
 
-void storeRollingCode() {
-    ofstream myfile ("example.txt");
-    if (myfile.is_open())
-    {
-        myfile << "This is a line.\n";
-        myfile << "This is another line.\n";
-        myfile.close();
-    }
-    else cout << "Unable to open file";
-}
-
-/** init class payload to 0 */
+/** constructor */
 CCodecSomfyRTS::CCodecSomfyRTS()
-        : _status(k_waiting_synchro), _cpt_synchro_hw(0), _cpt_bits(0), _previous_bit(0), _waiting_half_symbol(false) {
+: _status(k_waiting_synchro)
+, _cpt_synchro_hw(0)
+, _cpt_bits(0)
+, _previous_bit(0)
+, _waiting_half_symbol(false) {
     for (int i = 0; i < 7; ++i) _payload[i] = 0;
 }
 
