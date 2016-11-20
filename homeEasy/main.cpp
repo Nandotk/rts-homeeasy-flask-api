@@ -13,16 +13,7 @@
  **
  **/
 
-#include <wiringPi.h>
-#include <iostream>
-#include <stdio.h>
-#include <sys/time.h>
-#include <time.h>
-#include <stdlib.h>
-#include <sched.h>
-#include <sstream>
-
-#define GPIO_BASE 7
+#include "foo.h"
 
 using namespace std;
 
@@ -35,7 +26,7 @@ int main(int argc, char **argv) {
     }
 
     scheduler_realtime();
-    log("Processing ...");
+    log("Processing");
 
     if (wiringPiSetup() == -1) {
         log("WiringPI Library not found");
@@ -46,10 +37,7 @@ int main(int argc, char **argv) {
     pinMode(GPIO_BASE, OUTPUT);
     log("GPIO 7 OUTPUT");
 
-
-
     if (cmd) {
-
         if (cmd == "on") {
             //system("/etc/lcd/screen -p \"Radio signal ON...\"");
             log("sending ON HomeEasy ...");
