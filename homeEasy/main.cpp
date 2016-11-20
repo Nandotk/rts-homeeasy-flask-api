@@ -18,7 +18,7 @@
 using namespace std;
 
 int main(int argc, char **argv) {
-    char *cmd = argv[1];
+    int cmd = atoi(argv[1]);
 
     if (setuid(0)) {
         perror("setuid");
@@ -26,7 +26,6 @@ int main(int argc, char **argv) {
     }
 
     scheduler_realtime();
-    log("Processing");
 
     if (wiringPiSetup() == -1) {
         log("WiringPI Library not found");
@@ -37,26 +36,21 @@ int main(int argc, char **argv) {
     log("GPIO 7 OUTPUT");
 
     if (cmd) {
-        if (cmd == "on") {
-            //system("/etc/lcd/screen -p \"Radio signal ON...\"");
-            log("sending ON HomeEasy ...");
-            for (int i = 0; i < 5; i++) {
-                transmit(true);
-                delay(10);
-            }
-        } else if (cmd == "off") {
-            //system("/etc/lcd/screen -p \"Radio signal OFF...\"");
-            log("sending OFF HomeEasy");
-            for (int i = 0; i < 5; i++) {
-                transmit(false);
-                delay(10);
-            }
-        } else {
-            log("Usage : .[binary] [ON/OFF]");
+        //system("/etc/lcd/screen -p \"Radio signal ON...\"");
+        log("sending ON HomeEasy ...");
+        for (int i = 0; i < 5; i++) {
+            transmit(true);
+            delay(10);
+        }
+    } else {
+        //system("/etc/lcd/screen -p \"Radio signal OFF...\"");
+        log("sending OFF HomeEasy");
+        for (int i = 0; i < 5; i++) {
+            transmit(false);
+            delay(10);
         }
     }
-
-    log("Ends");
     scheduler_standard();
+    return (0);
 }
 
