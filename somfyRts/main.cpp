@@ -30,6 +30,7 @@ int main(int argc, char **argv) {
     }
 
     rc = getRollingCode();
+    cout << rc << endl;
 
     scheduler_realtime();
     log("Processing");
@@ -38,6 +39,9 @@ int main(int argc, char **argv) {
         log("WiringPI Library not found");
         return -1;
 
+    } else {
+        pinMode(GPIO_SOMFY, OUTPUT);
+        log("GPIO 4 OUTPUT");
     }
 
     switch (inChar) {
