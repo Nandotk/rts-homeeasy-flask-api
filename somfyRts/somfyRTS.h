@@ -13,7 +13,6 @@
 #ifndef __SOMFY_RTS_H__
 # define __SOMFY_RTS_H__
 
-# include <cstdint>
 # include <wiringPi.h>
 # include <iostream>
 # include <stdio.h>
@@ -27,21 +26,21 @@
 # define GPIO_SOMFY 4
 
 /** tempo RTS */
-# define k_tempo_wakeup_pulse 9415;
-# define k_tempo_wakeup_silence 89565;
-# define k_tempo_synchro_hw 2416;
-# define k_tempo_synchro_hw_min 2416 * 0.7;
-# define k_tempo_synchro_hw_max 2416 * 1.3;
-# define k_tempo_synchro_sw 4550;
-# define k_tempo_synchro_sw_min 4550 * 0.7;
-# define k_tempo_synchro_sw_max 4550 * 1.3;
-# define k_tempo_half_symbol 604;
-# define k_tempo_half_symbol_min 604 * 0.7;
-# define k_tempo_half_symbol_max 604 * 1.3;
-# define k_tempo_symbol 1208;
-# define k_tempo_symbol_min 1208 * 0.7;
-# define k_tempo_symbol_max 1208 * 1.3;
-# define k_tempo_inter_frame_gap 30415;
+# define k_tempo_wakeup_pulse 9415
+# define k_tempo_wakeup_silence 89565
+# define k_tempo_synchro_hw 2416
+# define k_tempo_synchro_hw_min 2416 * 0.7
+# define k_tempo_synchro_hw_max 2416 * 1.3
+# define k_tempo_synchro_sw 4550
+# define k_tempo_synchro_sw_min 4550 * 0.7
+# define k_tempo_synchro_sw_max 4550 * 1.3
+# define k_tempo_half_symbol 604
+# define k_tempo_half_symbol_min 604 * 0.7
+# define k_tempo_half_symbol_max 604 * 1.3
+# define k_tempo_symbol 1208
+# define k_tempo_symbol_min 1208 * 0.7
+# define k_tempo_symbol_max 1208 * 1.3
+# define k_tempo_inter_frame_gap 30415
 
 
 class CCodecSomfyRTS {
