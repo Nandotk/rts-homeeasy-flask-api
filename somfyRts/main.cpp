@@ -13,27 +13,17 @@
  **
  **/
 
-#include "wiringPi.h"
-#include <iostream>
-#include <stdio.h>
-#include <sys/time.h>
-#include <time.h>
-#include <stdlib.h>
-#include <sched.h>
-#include <sstream>
+#include "somfyRTS.h"
 
-#include "somfyRts/CCodecSomfyRTS.cpp"
-#include "homeEasy/foo.cpp"
-
-#define GPIO_BASE 7
+using namespace std;
 
 int main(int argc, char **argv) {
 
-    static          CCodecSomfyRTS codecSomfyRTS;
-    unsigned long   rc = 0021;
-    int             inByte = 0;
-    int8_t          cmd;
-    char            inChar = argv[1][0];
+    static CCodecSomfyRTS codecSomfyRTS;
+    unsigned long rc = 0021;
+    int inByte = 0;
+    int8_t cmd;
+    char inChar = argv[1][0];
 
     if (setuid(0)) {
         perror("setuid");
@@ -41,22 +31,16 @@ int main(int argc, char **argv) {
     }
 
     scheduler_realtime();
-    log("Demarrage du programme");
+    log("Processing");
 
     if (wiringPiSetup() == -1) {
-        log("Librairie Wiring PI introuvable, veuillez lier cette librairie...");
+        log("WiringPI Library not found");
         return -1;
 
     }
 
-    pinMode(GPIO_BASE, OUTPUT);
-    log("Pin GPIO configure en sortie");
-
-    itob(12325261, 26);
-    itobInterruptor(1, 4);
-
-    if (inChar) {
-        if (inChar == 'm') {
+    switch (inChar) {
+        case 'm':
             cmd = 0x02;
             codecSomfyRTS.transmit(cmd, rc, 2);
             int pmax = 2;
@@ -66,9 +50,9 @@ int main(int argc, char **argv) {
 
             log("cmd monter 0x02");
             rc++;
-        }
+            break;
 
-        if (inChar == 'd') {
+        case 'd':
             cmd = 0x04;
             codecSomfyRTS.transmit(cmd, rc, 2);
             int pmax = 2;
@@ -78,9 +62,9 @@ int main(int argc, char **argv) {
 
             log("cmd descendre 0x04");
             rc++;
-        }
+            break;
 
-        if (inChar == 's') {
+        case 's':
             cmd = 0x01;
             codecSomfyRTS.transmit(cmd, rc, 2);
             int pmax = 2;
@@ -90,9 +74,9 @@ int main(int argc, char **argv) {
 
             log("cmd stop 0x01");
             rc++;
-        }
+            break;
 
-        if (inChar == 'p') {
+        case 'p':
             cmd = 0x08;
             codecSomfyRTS.transmit(cmd, rc, 2);
             int pmax = 20;
@@ -102,9 +86,9 @@ int main(int argc, char **argv) {
 
             log("cmd programmation 0x08 long (association)");
             rc++;
-        }
+            break;
 
-        if (inChar == 'q') {
+        case 'q':
             cmd = 0x08;
             codecSomfyRTS.transmit(cmd, rc, 2);
             int pmax = 2;
@@ -114,25 +98,7 @@ int main(int argc, char **argv) {
 
             log("cmd programmation 0x08 court (déassociation)");
             rc++;
-        }
-
-        if (inChar == 'a') {
-            //system("/etc/lcd/screen -p \"Radio signal ON...\"");
-            log("envois du signal ON");
-            for (int i = 0; i < 5; i++) {
-                transmit(true);
-                delay(10);
-            }
-        }
-
-        if (inChar == 'b') {
-            //system("/etc/lcd/screen -p \"Radio signal OFF...\"");
-            log("envois du signal OFF");
-            for (int i = 0; i < 5; i++) {
-                transmit(false);
-                delay(10);
-            }
-        }
+            break;
     }
 
     log("fin du programme");

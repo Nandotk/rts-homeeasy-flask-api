@@ -24,13 +24,20 @@
 
 # define GPIO_BASE 7
 
-void            log(const char *a);
-void            scheduler_realtime();
-void            scheduler_standard();
-void            sendBit(bool b);
-unsigned long   power2(int power);
-void            itobinary(unsigned long integer, int length, bool *pBoolean);
-void            sendPair(bool b);
-void            transmit(bool code);
+void log(const char *a);
+
+void scheduler_realtime();
+
+void scheduler_standard();
+
+void sendBit(bool b);
+
+unsigned long power2(int power);
+
+void itobinary(unsigned long integer, int length, bool *pBoolean);
+
+void sendPair(bool b);
+
+void transmit(bool code);
 
 #endif

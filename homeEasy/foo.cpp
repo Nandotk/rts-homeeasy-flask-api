@@ -13,6 +13,8 @@
 
 #include "foo.h"
 
+using namespace std;
+
 void    log(const char *a){
     /** @foo logs */
     cout << a << endl;
@@ -97,14 +99,14 @@ void        transmit(bool code) {
     digitalWrite(GPIO_BASE, HIGH);
 
     for(i = 0; i < 26; i++) {
-        sendPair(bit2[i]);
+        sendPair(addrBoolean[i]);
     }
 
     sendPair(false);
     sendPair(code);
 
     for(i = 0; i < 4; i++) {
-        sendPair(pBoolean[i] != 0);
+        sendPair(iBoolean[i] != 0);
     }
 
     digitalWrite(GPIO_BASE, HIGH);
