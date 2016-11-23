@@ -16,7 +16,7 @@ using namespace std;
 
 void log(const char *a) {
     /** @foo logs */
-    cout << a << endl;
+    //cout << a << endl;
 }
 
 void scheduler_realtime() {
@@ -38,7 +38,7 @@ void scheduler_standard() {
 int getRollingCode() {
     int rcode = 0;
     string line;
-    ifstream rc ("rc.txt");
+    ifstream rc ("/home/pi/home.kontrol/somfyRts/rc.txt");
     if (rc.is_open())
     {
         getline(rc, line);
@@ -54,7 +54,7 @@ int getRollingCode() {
 
 void storeRollingCode(int rcode) {
     string line = std::to_string(rcode);
-    ofstream rc ("rc.txt");
+    ofstream rc ("/home/pi/home.kontrol/somfyRts/rc.txt");
     if (rc.is_open())
     {
         rc << line;

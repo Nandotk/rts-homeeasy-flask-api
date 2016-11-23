@@ -25,7 +25,7 @@
 
 # define GPIO_SOMFY 4
 
-/** tempo RTS */
+/** timer RTS */
 # define k_tempo_wakeup_pulse 9415
 # define k_tempo_wakeup_silence 89565
 # define k_tempo_synchro_hw 2416

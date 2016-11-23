@@ -30,7 +30,6 @@ int main(int argc, char **argv) {
     }
 
     rc = getRollingCode();
-    cout << rc << endl;
 
     scheduler_realtime();
     log("Processing");
