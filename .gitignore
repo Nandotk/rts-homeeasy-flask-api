@@ -28,3 +28,9 @@
 *.out
 *.app
 CMakeLists.txt
+
+/homeEasy/homeEasy
+/somfyRts/compil.txt
+/somfyRts/rc.txt
+/somfyRts/rc.txt~
+/somfyRts/somfyRTS
