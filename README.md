@@ -1,2 +1,2 @@
-# home.kontrol
-Home control application, based on raspberry pi and android
+# RTS and home easy protocol transmission
+Home control api, based on raspberry pi

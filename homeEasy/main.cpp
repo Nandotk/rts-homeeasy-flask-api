@@ -1,19 +1,10 @@
 /**
- **    Home easy main control on 443,92 mHz frequence
+ **    home easy main control on 443,92 Mhz
  **
- **    @authors yoyolb - 05/08/2014 and clox - 13/01/2015
- **    @version 1.0
- **    @modifying nand 17/11/2016
- **
- **                                                    _             _
- **       /\  /\___  _ __ ___   ___    /\ /\___  _ __ | |_ _ __ ___ | |
- **      / /_/ / _ \| '_ ` _ \ / _ \  / //_/ _ \| '_ \| __| '__/ _ \| |
- **     / __  / (_) | | | | | |  __/ / __ \ (_) | | | | |_| | | (_) | |
- **     \/ /_/ \___/|_| |_| |_|\___| \/  \/\___/|_| |_|\__|_|  \___/|_|
- **
+ **    @author nandotk
  **/
 
-#include "foo.h"
+#include "homeeasy.h"
 
 using namespace std;
 
