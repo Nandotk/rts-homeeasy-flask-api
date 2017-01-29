@@ -1,13 +1,7 @@
 /**
- **    Class RTS Somfy
+ **    RTS Somfy protocol
  **
- **    @authors nand 17/11/2016
- **                                                    _             _
- **       /\  /\___  _ __ ___   ___    /\ /\___  _ __ | |_ _ __ ___ | |
- **      / /_/ / _ \| '_ ` _ \ / _ \  / //_/ _ \| '_ \| __| '__/ _ \| |
- **     / __  / (_) | | | | | |  __/ / __ \ (_) | | | | |_| | | (_) | |
- **     \/ /_/ \___/|_| |_| |_|\___| \/  \/\___/|_| |_|\__|_|  \___/|_|
- **
+ **    @author nandotk
  **/
 
 #include "somfyRTS.h"
@@ -15,7 +9,7 @@
 using namespace std;
 
 void log(const char *a) {
-    /** @foo logs */
+    /** display logs */
     //cout << a << endl;
 }
 
@@ -38,6 +32,7 @@ void scheduler_standard() {
 int getRollingCode() {
     int rcode = 0;
     string line;
+    /** full path rc.txt */
     ifstream rc ("/home/pi/home.kontrol/somfyRts/rc.txt");
     if (rc.is_open())
     {
@@ -54,6 +49,7 @@ int getRollingCode() {
 
 void storeRollingCode(int rcode) {
     string line = std::to_string(rcode);
+    /** full path rc.txt */
     ofstream rc ("/home/pi/home.kontrol/somfyRts/rc.txt");
     if (rc.is_open())
     {
@@ -77,19 +73,18 @@ CCodecSomfyRTS::CCodecSomfyRTS()
 /** transmit function that follow RTS */
 bool CCodecSomfyRTS::transmit(int8_t cmd, unsigned long rolling_code, int8_t first) {
 
-    /** Construction de la trame claire */
     int8_t data[7];
     data[0] = (int8_t) 0xA7;
     data[1] = cmd << 4;
     data[2] = (int8_t) ((rolling_code & 0xFF00) >> 8);
     data[3] = (int8_t) (rolling_code & 0x00FF);
 
-    /** Mettre ici l'adresse de votre TC ou de la TC simulée */
+    /** remote control address */
     data[4] = (int8_t) 0xAB;
     data[5] = (int8_t) 0xCD;
     data[6] = (int8_t) 0xEF;
 
-    /** Calcul du checksum */
+    /** checksum */
     int8_t cksum = 0;
     for (int i = 0; i < 7; ++i) cksum = (int8_t) (cksum ^ (data[i] & 0xF) ^ (data[i] >> 4));
     data[1] = data[1] | (cksum);
@@ -99,7 +94,7 @@ bool CCodecSomfyRTS::transmit(int8_t cmd, unsigned long rolling_code, int8_t fir
     datax[0] = data[0];
     for (int i = 1; i < 7; ++i) datax[i] = datax[i - 1] ^ data[i];
 
-    /** Emission wakeup, synchro hardware et software */
+    /** wakeup, hardware, software */
     digitalWrite(GPIO_SOMFY, 1);
     delayMicroseconds(k_tempo_wakeup_pulse);
     digitalWrite(GPIO_SOMFY, 0);
@@ -117,7 +112,7 @@ bool CCodecSomfyRTS::transmit(int8_t cmd, unsigned long rolling_code, int8_t fir
     digitalWrite(GPIO_SOMFY, 0);
     delayMicroseconds(k_tempo_half_symbol);
 
-    /** Emission des donnees */
+    /** data */
     for (int i = 0; i < 56; ++i) {
         int8_t bit_to_transmit = (int8_t) (datax[i / 8] >> (7 - i % 8) & 0x01);
         if (bit_to_transmit == 0) {

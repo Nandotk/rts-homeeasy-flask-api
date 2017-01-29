@@ -1,13 +1,7 @@
 /**
- **    Home easy header
- **    @authors nand - 20/11/2016
- **    @version 1.0
- **                                                    _             _
- **       /\  /\___  _ __ ___   ___    /\ /\___  _ __ | |_ _ __ ___ | |
- **      / /_/ / _ \| '_ ` _ \ / _ \  / //_/ _ \| '_ \| __| '__/ _ \| |
- **     / __  / (_) | | | | | |  __/ / __ \ (_) | | | | |_| | | (_) | |
- **     \/ /_/ \___/|_| |_| |_|\___| \/  \/\___/|_| |_|\__|_|  \___/|_|
+ **    home easy header
  **
+ **    @author nandotk
  **/
 
 #ifndef __FOO_H__
@@ -20,7 +14,6 @@
 # include <time.h>
 # include <stdlib.h>
 # include <sched.h>
-//# include <sstream>
 
 # define GPIO_BASE 7
 
